@@ -1,12 +1,18 @@
 package com.github.freekdb.automatictranslation
 
-class GoogleTranslation {
+import com.google.cloud.translate.Translate
+
+class GoogleTranslation(private val googleTranslate: Translate) {
     fun translate(sourceText: String, targetLanguage: String): TranslateResponse {
+        val translation = googleTranslate.translate(sourceText, Translate.TranslateOption.targetLanguage(targetLanguage))
+
         return TranslateResponse(
             listOf(
                 SourceTranslateResponse(
-                    sourceText, "nl",
-                    mapOf(targetLanguage to "Testing..."), ""
+                    sourceText,
+                    translation.sourceLanguage,
+                    mapOf(targetLanguage to translation.translatedText),
+                    ""
                 )
             )
         )
