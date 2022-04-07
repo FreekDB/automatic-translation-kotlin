@@ -8,8 +8,9 @@ plugins {
     kotlin("plugin.serialization") version "1.6.20"
 }
 
-group = "com.github"
-version = "0.0.1"
+group = "com.github.freekdb.automatictranslation"
+version = "0.0.6"
+
 application {
     mainClass.set("com.github.ApplicationKt")
 
