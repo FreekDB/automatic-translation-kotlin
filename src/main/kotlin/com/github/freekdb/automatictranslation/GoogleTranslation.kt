@@ -3,18 +3,30 @@ package com.github.freekdb.automatictranslation
 import com.google.cloud.translate.Translate
 
 class GoogleTranslation(private val googleTranslate: Translate) {
-    fun translate(sourceText: String, targetLanguage: String): TranslateResponse {
-        val translation = googleTranslate.translate(sourceText, Translate.TranslateOption.targetLanguage(targetLanguage))
+    fun translate(sourceTexts: List<String>, targetLanguages: List<String>): TranslateResponse {
+        val detectedSourceLanguages = mutableMapOf<String, String>()
+        val translations = mutableMapOf<String, MutableMap<String, String>>()
+
+        targetLanguages.map { targetLanguage ->
+            val translateOption = Translate.TranslateOption.targetLanguage(targetLanguage)
+            val translationsByLanguage = googleTranslate.translate(sourceTexts, translateOption)
+
+            translationsByLanguage.forEachIndexed { translationIndex, translation ->
+                val sourceText = sourceTexts[translationIndex]
+                detectedSourceLanguages[sourceText] = translation.sourceLanguage
+                translations.getOrPut(sourceText) { mutableMapOf() }[targetLanguage] = translation.translatedText
+            }
+        }
 
         return TranslateResponse(
-            listOf(
+            sourceTexts.map { sourceText ->
                 SourceTranslateResponse(
                     sourceText,
-                    translation.sourceLanguage,
-                    mapOf(targetLanguage to translation.translatedText),
+                    detectedSourceLanguages[sourceText] ?: "",
+                    translations[sourceText] ?: emptyMap(),
                     ""
                 )
-            )
+            }
         )
     }
 }
@@ -26,5 +38,5 @@ data class TranslateResponse(val data: List<SourceTranslateResponse>)
 
 data class SourceTranslateResponse(
     val sourceText: String, val detectedSourceLanguage: String,
-    var translations: Map<String, String>, val errors: String
+    val translations: Map<String, String>, val errors: String
 )
