@@ -1,6 +1,6 @@
 package com.github.freekdb.automatictranslation.translate
 
-import com.github.freekdb.automatictranslation.translate.google.TranslateResponse
+import com.github.freekdb.automatictranslation.translate.endpoint.TranslateResponse
 
 val CHINESE_DIALECTS = mapOf(
     "zh-hk" to "zh-tw",  // Map Hong Kong to Chinese (traditional)

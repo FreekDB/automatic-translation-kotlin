@@ -1,6 +1,8 @@
 package com.github.freekdb.automatictranslation.translate.google
 
 import com.github.freekdb.automatictranslation.translate.Translator
+import com.github.freekdb.automatictranslation.translate.endpoint.SourceTranslateResponse
+import com.github.freekdb.automatictranslation.translate.endpoint.TranslateResponse
 import com.google.cloud.translate.Translate
 
 private val FULLY_SUPPORTED_LANGUAGES = listOf(
@@ -86,13 +88,3 @@ class GoogleTranslator(private val googleTranslate: Translate) : Translator {
         )
     }
 }
-
-
-data class TranslateRequest(val sourceTexts: List<String>, val targetLanguages: List<String>)
-
-data class TranslateResponse(val data: List<SourceTranslateResponse>)
-
-data class SourceTranslateResponse(
-    val sourceText: String, val detectedSourceLanguage: String,
-    val translations: Map<String, String>, val errors: String
-)

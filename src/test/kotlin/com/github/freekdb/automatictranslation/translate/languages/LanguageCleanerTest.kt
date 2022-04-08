@@ -1,7 +1,7 @@
 package com.github.freekdb.automatictranslation.translate.languages
 
 import com.github.freekdb.automatictranslation.translate.Translator
-import com.github.freekdb.automatictranslation.translate.google.TranslateResponse
+import com.github.freekdb.automatictranslation.translate.endpoint.TranslateResponse
 import org.junit.Assert
 import org.junit.Test
 
