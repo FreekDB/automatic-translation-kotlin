@@ -25,6 +25,7 @@ repositories {
 
 val googleTranslationVersion = "2.1.12"
 val googleCloudVersion = "25.1.0"
+val mockitoVersion = "1.10.19"
 
 dependencies {
     implementation("io.ktor:ktor-server-core:$ktorVersion")
@@ -37,4 +38,5 @@ dependencies {
 
     testImplementation("io.ktor:ktor-server-tests:$ktorVersion")
     testImplementation("org.jetbrains.kotlin:kotlin-test-junit:$kotlinVersion")
+    testImplementation("org.mockito:mockito-all:$mockitoVersion")
 }

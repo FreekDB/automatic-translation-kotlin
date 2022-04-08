@@ -15,7 +15,7 @@ fun Application.configureRouting() {
         get("/translate") {
             val translateRequest = call.receive<TranslateRequest>()
             val googleTranslation = GoogleTranslation(GoogleTranslateSupplier().getGoogleTranslate())
-            call.respond(googleTranslation.translate(translateRequest.sourceTexts, translateRequest.targetLanguages))
+            call.respond(googleTranslation.translateTexts(translateRequest.sourceTexts, translateRequest.targetLanguages))
         }
     }
 }
