@@ -1,6 +1,6 @@
 package com.github.freekdb.automatictranslation.translate.google
 
-import com.github.freekdb.automatictranslation.translate.TranslationApi
+import com.github.freekdb.automatictranslation.translate.Translator
 import com.google.cloud.translate.Translate
 
 private val FULLY_SUPPORTED_LANGUAGES = listOf(
@@ -48,7 +48,7 @@ private val ACCEPTED_LANGUAGES = listOf(
  */
 private val SUPPORTED_LANGUAGES = FULLY_SUPPORTED_LANGUAGES + ACCEPTED_CHINESE_DIALECTS + ACCEPTED_LANGUAGES
 
-class GoogleTranslation(private val googleTranslate: Translate) : TranslationApi {
+class GoogleTranslator(private val googleTranslate: Translate) : Translator {
     override fun getSupportedLanguages(): List<String> {
         return SUPPORTED_LANGUAGES
     }

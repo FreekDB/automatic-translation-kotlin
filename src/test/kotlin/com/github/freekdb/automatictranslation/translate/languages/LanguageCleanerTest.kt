@@ -1,6 +1,6 @@
 package com.github.freekdb.automatictranslation.translate.languages
 
-import com.github.freekdb.automatictranslation.translate.TranslationApi
+import com.github.freekdb.automatictranslation.translate.Translator
 import com.github.freekdb.automatictranslation.translate.google.TranslateResponse
 import org.junit.Assert
 import org.junit.Test
@@ -43,7 +43,7 @@ class LanguageCleanerTest {
 }
 
 
-private class MockTranslator : TranslationApi {
+private class MockTranslator : Translator {
     override fun getSupportedLanguages(): List<String> {
         return listOf("zh-CN", "zh-TW", "en", "nl", "fr", "de", "es", "it")
     }

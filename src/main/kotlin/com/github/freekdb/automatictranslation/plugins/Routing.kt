@@ -1,6 +1,6 @@
 package com.github.freekdb.automatictranslation.plugins
 
-import com.github.freekdb.automatictranslation.translate.google.GoogleTranslation
+import com.github.freekdb.automatictranslation.translate.google.GoogleTranslator
 import com.github.freekdb.automatictranslation.translate.google.TranslateRequest
 import com.github.freekdb.automatictranslation.translate.google.GoogleTranslateSupplier
 import com.github.freekdb.automatictranslation.translate.languages.LanguageCleaner
@@ -15,10 +15,10 @@ fun Application.configureRouting() {
     routing {
         get("/translate") {
             val translateRequest = call.receive<TranslateRequest>()
-            val googleTranslation = GoogleTranslation(GoogleTranslateSupplier().getGoogleTranslate())
+            val googleTranslator = GoogleTranslator(GoogleTranslateSupplier().getGoogleTranslate())
 
-            call.respond(googleTranslation.translateTexts(translateRequest.sourceTexts,
-                LanguageCleaner().clean(translateRequest.targetLanguages, googleTranslation)))
+            call.respond(googleTranslator.translateTexts(translateRequest.sourceTexts,
+                LanguageCleaner().clean(translateRequest.targetLanguages, googleTranslator)))
         }
     }
 }

@@ -9,7 +9,7 @@ val CHINESE_DIALECTS = mapOf(
     "zh" to "zh-cn"      // Map general to Chinese (simplified)
 )
 
-interface TranslationApi {
+interface Translator {
     fun processLanguageException(language: String): String =
         CHINESE_DIALECTS.getOrDefault(language, language)
 

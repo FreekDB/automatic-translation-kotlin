@@ -6,11 +6,11 @@ import org.junit.Assert
 import org.junit.Test
 import org.mockito.Mockito
 
-class GoogleTranslationTest {
+class GoogleTranslatorTest {
     @Test
     fun testGetSupportedLanguages() {
-        val googleTranslation = GoogleTranslation(Mockito.mock(Translate::class.java))
-        val languages = googleTranslation.getSupportedLanguages()
+        val googleTranslator = GoogleTranslator(Mockito.mock(Translate::class.java))
+        val languages = googleTranslator.getSupportedLanguages()
         Assert.assertTrue(languages.isNotEmpty())
     }
 
@@ -28,7 +28,7 @@ class GoogleTranslationTest {
         Mockito.`when`(translation.translatedText).thenReturn(translatedText)
         Mockito.`when`(googleTranslate.translate(listOf(sourceText), translateOption)).thenReturn(listOf(translation))
 
-        val translateResponse = GoogleTranslation(googleTranslate)
+        val translateResponse = GoogleTranslator(googleTranslate)
             .translateTexts(listOf(sourceText), listOf(targetLanguage))
 
         Assert.assertEquals(1, translateResponse.data.size)
@@ -53,7 +53,7 @@ class GoogleTranslationTest {
         Mockito.`when`(googleTranslate.translate(listOf(sourceText1, sourceText2), translateOption2))
             .thenThrow(RuntimeException(exceptionCause2))
 
-        val translateResponse = GoogleTranslation(googleTranslate).translateTexts(
+        val translateResponse = GoogleTranslator(googleTranslate).translateTexts(
             listOf(sourceText1, sourceText2),
             listOf(targetLanguage1, targetLanguage2)
         )
