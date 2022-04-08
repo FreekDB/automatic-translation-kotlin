@@ -1,7 +1,7 @@
 package com.github.freekdb.automatictranslation.translate.google
 
+import com.github.freekdb.automatictranslation.translate.utilities.TestUtilities
 import com.google.cloud.translate.Translate
-import com.google.cloud.translate.Translation
 import org.junit.Assert
 import org.junit.Test
 import org.mockito.Mockito
@@ -21,12 +21,8 @@ class GoogleTranslatorTest {
         val targetLanguage = "de"
         val translatedText = "A test translation."
 
-        val translation = Mockito.mock(Translation::class.java)
-        val googleTranslate = Mockito.mock(Translate::class.java)
-        val translateOption = Translate.TranslateOption.targetLanguage(targetLanguage)
-        Mockito.`when`(translation.sourceLanguage).thenReturn(sourceLanguage)
-        Mockito.`when`(translation.translatedText).thenReturn(translatedText)
-        Mockito.`when`(googleTranslate.translate(listOf(sourceText), translateOption)).thenReturn(listOf(translation))
+        val googleTranslate =
+            TestUtilities.createGoogleTranslateMock(sourceText, sourceLanguage, targetLanguage, translatedText)
 
         val translateResponse = GoogleTranslator(googleTranslate)
             .translateTexts(listOf(sourceText), listOf(targetLanguage))
