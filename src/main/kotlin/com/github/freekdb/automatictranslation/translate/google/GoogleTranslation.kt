@@ -1,4 +1,4 @@
-package com.github.freekdb.automatictranslation
+package com.github.freekdb.automatictranslation.translate.google
 
 import com.google.cloud.translate.Translate
 

@@ -1,7 +1,7 @@
 package com.github.freekdb.automatictranslation.plugins
 
-import com.github.freekdb.automatictranslation.GoogleTranslation
-import com.github.freekdb.automatictranslation.TranslateRequest
+import com.github.freekdb.automatictranslation.translate.google.GoogleTranslation
+import com.github.freekdb.automatictranslation.translate.google.TranslateRequest
 import com.github.freekdb.automatictranslation.translate.google.GoogleTranslateSupplier
 import io.ktor.application.Application
 import io.ktor.application.call
