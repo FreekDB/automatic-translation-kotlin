@@ -3,6 +3,7 @@ package com.github.freekdb.automatictranslation.plugins
 import com.github.freekdb.automatictranslation.translate.google.GoogleTranslation
 import com.github.freekdb.automatictranslation.translate.google.TranslateRequest
 import com.github.freekdb.automatictranslation.translate.google.GoogleTranslateSupplier
+import com.github.freekdb.automatictranslation.translate.languages.LanguageCleaner
 import io.ktor.application.Application
 import io.ktor.application.call
 import io.ktor.request.receive
@@ -15,7 +16,9 @@ fun Application.configureRouting() {
         get("/translate") {
             val translateRequest = call.receive<TranslateRequest>()
             val googleTranslation = GoogleTranslation(GoogleTranslateSupplier().getGoogleTranslate())
-            call.respond(googleTranslation.translateTexts(translateRequest.sourceTexts, translateRequest.targetLanguages))
+
+            call.respond(googleTranslation.translateTexts(translateRequest.sourceTexts,
+                LanguageCleaner().clean(translateRequest.targetLanguages, googleTranslation)))
         }
     }
 }
