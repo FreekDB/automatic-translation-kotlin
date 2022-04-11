@@ -34,10 +34,12 @@ class LanguageCleanerTest {
 
     @Test
     fun testFilterLanguagesWithInvalidTargetLanguageValues() {
-        val translation = MockTranslator()
+        val translator = MockTranslator()
+
         val languageCleaner = LanguageCleaner()
+
         Assert.assertThrows(IllegalArgumentException::class.java) {
-            languageCleaner.clean(listOf("aaa bbb ccc"), translation)
+            languageCleaner.clean(listOf("aaa bbb ccc"), translator)
         }
     }
 }
